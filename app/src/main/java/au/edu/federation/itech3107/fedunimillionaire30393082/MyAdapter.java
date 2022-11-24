@@ -25,6 +25,7 @@ public class MyAdapter extends BaseAdapter {
         mList = list;
         layoutInflater = LayoutInflater.from(context);
         hisDataBase = HisDataBase.getDataBase(context);
+        dao = hisDataBase.getDao();
     }
 
     @Override
@@ -42,9 +43,8 @@ public class MyAdapter extends BaseAdapter {
         return i;
     }
     public void delete(int i){
-      dao = hisDataBase.getDao();
       dao.DeleteHis(i);
-      this.notifyDataSetChanged();
+      notifyDataSetChanged();
     }
     /* public void select(int position) {
         if (!mList.get(position).isSelected()) {
@@ -66,17 +66,18 @@ public class MyAdapter extends BaseAdapter {
             view = layoutInflater.inflate(R.layout.item, null);
             viewHolder.textView = (TextView) view.findViewById(R.id.title);
             viewHolder.textView1 = (TextView) view.findViewById(R.id.content);
+            viewHolder.textView2 = (TextView) view.findViewById(R.id.name);
             view.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) view.getTag();
         }
         viewHolder.textView.setText(String.valueOf("Bonus: "+mList.get(i).getBonus()));
         viewHolder.textView1.setText(mList.get(i).getTime());
-
+        viewHolder.textView2.setText("Player: "+mList.get(i).getName());
         return view;
     }
 
     public final class ViewHolder {
-        public TextView textView, textView1;
+        public TextView textView, textView1,textView2;
     }
 }

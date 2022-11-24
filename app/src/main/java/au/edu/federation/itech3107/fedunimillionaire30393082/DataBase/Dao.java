@@ -16,4 +16,8 @@ public interface Dao {
     List<History> QueryHis();
     @Query("Delete from History where id =:id")
     void DeleteHis(int id);
+    @Query("select * from History Order by id")
+    List<History> QueryHisTime();
+    @Query("select * from History Order by bonus desc")
+    List<History> QueryHisBonus();
 }

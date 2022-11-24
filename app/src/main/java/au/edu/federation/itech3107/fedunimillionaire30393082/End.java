@@ -1,5 +1,7 @@
 package au.edu.federation.itech3107.fedunimillionaire30393082;
 
+import static au.edu.federation.itech3107.fedunimillionaire30393082.Start.name;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Database;
 
@@ -33,7 +35,7 @@ public class End extends AppCompatActivity implements View.OnClickListener {
         textView2.setText("You will get " + bonus + "$！");
         hisDataBase =  HisDataBase.getDataBase(this);
         dao = hisDataBase.getDao();
-        history = new History(getTime(),bonus);
+        history = new History(getTime(),bonus,name);
         dao.InsertHis(history);
     }
     public void initView(){

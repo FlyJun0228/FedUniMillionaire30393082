@@ -9,14 +9,25 @@ public class History {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     private int Id;
-    @ColumnInfo(name = "name")
+    @ColumnInfo(name = "time")
     private String time;
     @ColumnInfo(name = "bonus")
     private int bonus;
+    @ColumnInfo(name = "name")
+    private String name;
 
-    public History(String time,int bonus){
+    public History(String time,int bonus,String name){
         this.time = time;
         this.bonus = bonus;
+        this.name = name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public int getId() {
