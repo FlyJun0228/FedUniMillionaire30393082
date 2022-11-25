@@ -1,10 +1,13 @@
 package au.edu.federation.itech3107.fedunimillionaire30393082;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,369 +16,373 @@ import java.util.Random;
 import au.edu.federation.itech3107.fedunimillionaire30393082.Bean.Question;
 
 public class Json {
-
-    private  String Questions_easy= "[\n" +
-            "  {\n" +
-            "    \"category\": \"General Knowledge\",\n" +
-            "    \"type\": \"multiple\",\n" +
-            "    \"difficulty\": \"easy\",\n" +
-            "    \"question\": \"What does a funambulist walk on?\",\n" +
-            "    \"correct_answer\": \"A Tight Rope\",\n" +
-            "    \"incorrect_answers\": [\n" +
-            "      \"Broken Glass\",\n" +
-            "      \"Balls\",\n" +
-            "      \"The Moon\"\n" +
-            "    ]\n" +
-            "  },\n" +
-            "  {\n" +
-            "    \"category\": \"General Knowledge\",\n" +
-            "    \"type\": \"multiple\",\n" +
-            "    \"difficulty\": \"easy\",\n" +
-            "    \"question\": \"What is the largest organ of the human body?\",\n" +
-            "    \"correct_answer\": \"Skin\",\n" +
-            "    \"incorrect_answers\": [\n" +
-            "      \"Heart\",\n" +
-            "      \"large Intestine\",\n" +
-            "      \"Liver\"\n" +
-            "    ]\n" +
-            "  },\n" +
-            "  {\n" +
-            "    \"category\": \"General Knowledge\",\n" +
-            "    \"type\": \"multiple\",\n" +
-            "    \"difficulty\": \"easy\",\n" +
-            "    \"question\": \"Which sign of the zodiac is represented by the Crab?\",\n" +
-            "    \"correct_answer\": \"Cancer\",\n" +
-            "    \"incorrect_answers\": [\n" +
-            "      \"Libra\",\n" +
-            "      \"Virgo\",\n" +
-            "      \"Sagittarius\"\n" +
-            "    ]\n" +
-            "  },\n" +
-            "  {\n" +
-            "    \"category\": \"General Knowledge\",\n" +
-            "    \"type\": \"multiple\",\n" +
-            "    \"difficulty\": \"easy\",\n" +
-            "    \"question\": \"On a dartboard, what number is directly opposite No. 1?\",\n" +
-            "    \"correct_answer\": \"19\",\n" +
-            "    \"incorrect_answers\": [\n" +
-            "      \"20\",\n" +
-            "      \"12\",\n" +
-            "      \"15\"\n" +
-            "    ]\n" +
-            "  },\n" +
-            "  {\n" +
-            "    \"category\": \"General Knowledge\",\n" +
-            "    \"type\": \"multiple\",\n" +
-            "    \"difficulty\": \"easy\",\n" +
-            "    \"question\": \"What type of animal was Harambe, who was shot after a child fell into it's enclosure at the Cincinnati Zoo?\",\n" +
-            "    \"correct_answer\": \"Gorilla\",\n" +
-            "    \"incorrect_answers\": [\n" +
-            "      \"Tiger\",\n" +
-            "      \"Panda\",\n" +
-            "      \"Crocodile\"\n" +
-            "    ]\n" +
-            "  },\n" +
-            "  {\n" +
-            "    \"category\": \"General Knowledge\",\n" +
-            "    \"type\": \"multiple\",\n" +
-            "    \"difficulty\": \"easy\",\n" +
-            "    \"question\": \"What is the nickname of the US state of California?\",\n" +
-            "    \"correct_answer\": \"Golden State\",\n" +
-            "    \"incorrect_answers\": [\n" +
-            "      \"Sunshine State\",\n" +
-            "      \"Bay State\",\n" +
-            "      \"Treasure State\"\n" +
-            "    ]\n" +
-            "  },\n" +
-            "  {\n" +
-            "    \"category\": \"General Knowledge\",\n" +
-            "    \"type\": \"multiple\",\n" +
-            "    \"difficulty\": \"easy\",\n" +
-            "    \"question\": \"Which American-owned brewery led the country in sales by volume in 2015?\",\n" +
-            "    \"correct_answer\": \"D. G. Yuengling and Son, Inc\",\n" +
-            "    \"incorrect_answers\": [\n" +
-            "      \"Anheuser Busch\",\n" +
-            "      \"Boston Beer Company\",\n" +
-            "      \"Miller Coors\"\n" +
-            "    ]\n" +
-            "  },\n" +
-            "  {\n" +
-            "    \"category\": \"General Knowledge\",\n" +
-            "    \"type\": \"multiple\",\n" +
-            "    \"difficulty\": \"easy\",\n" +
-            "    \"question\": \"According to Sherlock Holmes, 'If you eliminate the impossible, whatever remains, however improbable, must be the...'\",\n" +
-            "    \"correct_answer\": \"Truth\",\n" +
-            "    \"incorrect_answers\": [\n" +
-            "      \"Answer\",\n" +
-            "      \"Cause\",\n" +
-            "      \"Source\"\n" +
-            "    ]\n" +
-            "  },\n" +
-            "  {\n" +
-            "    \"category\": \"General Knowledge\",\n" +
-            "    \"type\": \"multiple\",\n" +
-            "    \"difficulty\": \"easy\",\n" +
-            "    \"question\": \"What is the name of Poland in Polish?\",\n" +
-            "    \"correct_answer\": \"Polska\",\n" +
-            "    \"incorrect_answers\": [\n" +
-            "      \"Pupcia\",\n" +
-            "      \"Polszka\",\n" +
-            "      \"Polski\"\n" +
-            "    ]\n" +
-            "  },\n" +
-            "  {\n" +
-            "    \"category\": \"General Knowledge\",\n" +
-            "    \"type\": \"multiple\",\n" +
-            "    \"difficulty\": \"easy\",\n" +
-            "    \"question\": \"The New York Times slogan is, 'All the News That's Fit to...'\",\n" +
-            "    \"correct_answer\": \"Print\",\n" +
-            "    \"incorrect_answers\": [\n" +
-            "      \"Digest\",\n" +
-            "      \"Look\",\n" +
-            "      \"Read\"\n" +
-            "    ]\n" +
-            "  },\n" +
-            "  {\n" +
-            "    \"category\": \"General Knowledge\",\n" +
-            "    \"type\": \"multiple\",\n" +
-            "    \"difficulty\": \"easy\",\n" +
-            "    \"question\": \"What do the letters of the fast food chain KFC stand for?\",\n" +
-            "    \"correct_answer\": \"Kentucky Fried Chicken\",\n" +
-            "    \"incorrect_answers\": [\n" +
-            "      \"Kentucky Fresh Cheese\",\n" +
-            "      \"Kibbled Freaky Cow\",\n" +
-            "      \"Kiwi Food Cut\"\n" +
-            "    ]\n" +
-            "  },\n" +
-            "  {\n" +
-            "    \"category\": \"General Knowledge\",\n" +
-            "    \"type\": \"multiple\",\n" +
-            "    \"difficulty\": \"easy\",\n" +
-            "    \"question\": \"Which sign of the zodiac comes between Virgo and Scorpio?\",\n" +
-            "    \"correct_answer\": \"Libra\",\n" +
-            "    \"incorrect_answers\": [\n" +
-            "      \"Gemini\",\n" +
-            "      \"Taurus\",\n" +
-            "      \"Capricorn\"\n" +
-            "    ]\n" +
-            "  },\n" +
-            "  {\n" +
-            "    \"category\": \"General Knowledge\",\n" +
-            "    \"type\": \"multiple\",\n" +
-            "    \"difficulty\": \"easy\",\n" +
-            "    \"question\": \"What is Tasmania?\",\n" +
-            "    \"correct_answer\": \"An Australian State\",\n" +
-            "    \"incorrect_answers\": [\n" +
-            "      \"A flavor of Ben and Jerry's ice-cream\",\n" +
-            "      \"A Psychological Disorder\",\n" +
-            "      \"The Name of a Warner Brothers Cartoon Character\"\n" +
-            "    ]\n" +
-            "  },\n" +
-            "  {\n" +
-            "    \"category\": \"General Knowledge\",\n" +
-            "    \"type\": \"multiple\",\n" +
-            "    \"difficulty\": \"easy\",\n" +
-            "    \"question\": \"In which fast food chain can you order a Big Mac?\",\n" +
-            "    \"correct_answer\": \"McDonald's\",\n" +
-            "    \"incorrect_answers\": [\n" +
-            "      \"KFC\",\n" +
-            "      \"Subway\",\n" +
-            "      \"Hungry Jack's\"\n" +
-            "    ]\n" +
-            "  },\n" +
-            "  {\n" +
-            "    \"category\": \"General Knowledge\",\n" +
-            "    \"type\": \"multiple\",\n" +
-            "    \"difficulty\": \"easy\",\n" +
-            "    \"question\": \"Which of the following is the IATA code for Manchester Airport?\",\n" +
-            "    \"correct_answer\": \"MAN\",\n" +
-            "    \"incorrect_answers\": [\n" +
-            "      \"EGLL\",\n" +
-            "      \"LHR\",\n" +
-            "      \"EGCC\"\n" +
-            "    ]\n" +
-            "  },\n" +
-            "  {\n" +
-            "    \"category\": \"General Knowledge\",\n" +
-            "    \"type\": \"multiple\",\n" +
-            "    \"difficulty\": \"easy\",\n" +
-            "    \"question\": \"What is the Zodiac symbol for Gemini?\",\n" +
-            "    \"correct_answer\": \"Twins\",\n" +
-            "    \"incorrect_answers\": [\n" +
-            "      \"Fish\",\n" +
-            "      \"Scales\",\n" +
-            "      \"Maiden\"\n" +
-            "    ]\n" +
-            "  },\n" +
-            "  {\n" +
-            "    \"category\": \"General Knowledge\",\n" +
-            "    \"type\": \"multiple\",\n" +
-            "    \"difficulty\": \"easy\",\n" +
-            "    \"question\": \"The likeness of which president is featured on the rare $2 bill of USA currency?\",\n" +
-            "    \"correct_answer\": \"Thomas Jefferson\",\n" +
-            "    \"incorrect_answers\": [\n" +
-            "      \"Martin Van Buren\",\n" +
-            "      \"Ulysses Grant\",\n" +
-            "      \"John Quincy Adams\"\n" +
-            "    ]\n" +
-            "  },\n" +
-            "  {\n" +
-            "    \"category\": \"General Knowledge\",\n" +
-            "    \"type\": \"multiple\",\n" +
-            "    \"difficulty\": \"easy\",\n" +
-            "    \"question\": \"What is Cynophobia the fear of?\",\n" +
-            "    \"correct_answer\": \"Dogs\",\n" +
-            "    \"incorrect_answers\": [\n" +
-            "      \"Birds\",\n" +
-            "      \"Flying\",\n" +
-            "      \"Germs\"\n" +
-            "    ]\n" +
-            "  },\n" +
-            "  {\n" +
-            "    \"category\": \"General Knowledge\",\n" +
-            "    \"type\": \"multiple\",\n" +
-            "    \"difficulty\": \"easy\",\n" +
-            "    \"question\": \"Terry Gilliam was an animator that worked with which British comedy group?\",\n" +
-            "    \"correct_answer\": \"Monty Python\",\n" +
-            "    \"incorrect_answers\": [\n" +
-            "      \"The Goodies\",\n" +
-            "      \"The League of Gentlemen&lrm;\",\n" +
-            "      \"The Penny Dreadfuls\"\n" +
-            "    ]\n" +
-            "  },\n" +
-            "  {\n" +
-            "    \"category\": \"General Knowledge\",\n" +
-            "    \"type\": \"multiple\",\n" +
-            "    \"difficulty\": \"easy\",\n" +
-            "    \"question\": \"When someone is inexperienced they are said to be what color?\",\n" +
-            "    \"correct_answer\": \"Green\",\n" +
-            "    \"incorrect_answers\": [\n" +
-            "      \"Red\",\n" +
-            "      \"Blue\",\n" +
-            "      \"Yellow\"\n" +
-            "    ]\n" +
-            "  },\n" +
-            "  {\n" +
-            "    \"category\": \"General Knowledge\",\n" +
-            "    \"type\": \"multiple\",\n" +
-            "    \"difficulty\": \"easy\",\n" +
-            "    \"question\": \"How many furlongs are there in a mile?\",\n" +
-            "    \"correct_answer\": \"Eight\",\n" +
-            "    \"incorrect_answers\": [\n" +
-            "      \"Two\",\n" +
-            "      \"Four\",\n" +
-            "      \"Six\"\n" +
-            "    ]\n" +
-            "  },\n" +
-            "  {\n" +
-            "    \"category\": \"General Knowledge\",\n" +
-            "    \"type\": \"multiple\",\n" +
-            "    \"difficulty\": \"easy\",\n" +
-            "    \"question\": \"When someone is cowardly, they are said to have what color belly?\",\n" +
-            "    \"correct_answer\": \"Yellow\",\n" +
-            "    \"incorrect_answers\": [\n" +
-            "      \"Green\",\n" +
-            "      \"Red\",\n" +
-            "      \"Blue\"\n" +
-            "    ]\n" +
-            "  },\n" +
-            "  {\n" +
-            "    \"category\": \"General Knowledge\",\n" +
-            "    \"type\": \"multiple\",\n" +
-            "    \"difficulty\": \"easy\",\n" +
-            "    \"question\": \"What is the name of NASA's most famous space telescope?\",\n" +
-            "    \"correct_answer\": \"Hubble Space Telescope\",\n" +
-            "    \"incorrect_answers\": [\n" +
-            "      \"Big Eye\",\n" +
-            "      \"Death Star\",\n" +
-            "      \"Millenium Falcon\"\n" +
-            "    ]\n" +
-            "  },\n" +
-            "  {\n" +
-            "    \"category\": \"General Knowledge\",\n" +
-            "    \"type\": \"multiple\",\n" +
-            "    \"difficulty\": \"easy\",\n" +
-            "    \"question\": \"Earth is located in which galaxy?\",\n" +
-            "    \"correct_answer\": \"The Milky Way Galaxy\",\n" +
-            "    \"incorrect_answers\": [\n" +
-            "      \"The Mars Galaxy\",\n" +
-            "      \"The Galaxy Note\",\n" +
-            "      \"The Black Hole\"\n" +
-            "    ]\n" +
-            "  },\n" +
-            "  {\n" +
-            "    \"category\": \"General Knowledge\",\n" +
-            "    \"type\": \"multiple\",\n" +
-            "    \"difficulty\": \"easy\",\n" +
-            "    \"question\": \"The Canadian $1 coin is colloquially known as a what?\",\n" +
-            "    \"correct_answer\": \"Loonie\",\n" +
-            "    \"incorrect_answers\": [\n" +
-            "      \"Boolie\",\n" +
-            "      \"Foolie\",\n" +
-            "      \"Moodie\"\n" +
-            "    ]\n" +
-            "  },\n" +
-            "  {\n" +
-            "    \"category\": \"General Knowledge\",\n" +
-            "    \"type\": \"multiple\",\n" +
-            "    \"difficulty\": \"easy\",\n" +
-            "    \"question\": \"Who is the author of Jurrasic Park?\",\n" +
-            "    \"correct_answer\": \"Michael Crichton\",\n" +
-            "    \"incorrect_answers\": [\n" +
-            "      \"Peter Benchley\",\n" +
-            "      \"Chuck Paluhniuk\",\n" +
-            "      \"Irvine Welsh\"\n" +
-            "    ]\n" +
-            "  },\n" +
-            "  {\n" +
-            "    \"category\": \"General Knowledge\",\n" +
-            "    \"type\": \"multiple\",\n" +
-            "    \"difficulty\": \"easy\",\n" +
-            "    \"question\": \"Which of the following is not the host of a program on NPR?\",\n" +
-            "    \"correct_answer\": \"Ben Shapiro\",\n" +
-            "    \"incorrect_answers\": [\n" +
-            "      \"Terry Gross\",\n" +
-            "      \"Ira Glass\",\n" +
-            "      \"Peter Sagal\"\n" +
-            "    ]\n" +
-            "  },\n" +
-            "  {\n" +
-            "    \"category\": \"General Knowledge\",\n" +
-            "    \"type\": \"multiple\",\n" +
-            "    \"difficulty\": \"easy\",\n" +
-            "    \"question\": \"What is the French word for 'fish'?\",\n" +
-            "    \"correct_answer\": \"poisson\",\n" +
-            "    \"incorrect_answers\": [\n" +
-            "      \"fiche\",\n" +
-            "      \"escargot\",\n" +
-            "      \"mer\"\n" +
-            "    ]\n" +
-            "  },\n" +
-            "  {\n" +
-            "    \"category\": \"General Knowledge\",\n" +
-            "    \"type\": \"multiple\",\n" +
-            "    \"difficulty\": \"easy\",\n" +
-            "    \"question\": \"When was the Playstation 3 released?\",\n" +
-            "    \"correct_answer\": \"November 11, 2006\",\n" +
-            "    \"incorrect_answers\": [\n" +
-            "      \"January 8, 2007\",\n" +
-            "      \"December 25, 2007\",\n" +
-            "      \"July 16, 2006\"\n" +
-            "    ]\n" +
-            "  },\n" +
-            "  {\n" +
-            "    \"category\": \"General Knowledge\",\n" +
-            "    \"type\": \"multiple\",\n" +
-            "    \"difficulty\": \"easy\",\n" +
-            "    \"question\": \"What kind of aircraft was developed by Igor Sikorsky in the United States in 1942?\",\n" +
-            "    \"correct_answer\": \"Helicopter\",\n" +
-            "    \"incorrect_answers\": [\n" +
-            "      \"Stealth Blimp\",\n" +
-            "      \"Jet\",\n" +
-            "      \"Space Capsule\"\n" +
-            "    ]\n" +
-            "  }\n" +
-            "]";
+    private Context context;
+public Json(Context context){
+    this.context = context;
+}
+    private  String Questions_easy=
+            " [\n" +
+                    "    {\n" +
+                    "      \"category\": \"General Knowledge\",\n" +
+                    "      \"type\": \"multiple\",\n" +
+                    "      \"difficulty\": \"easy\",\n" +
+                    "      \"question\": \"What does a funambulist walk on?\",\n" +
+                    "      \"correct_answer\": \"A Tight Rope\",\n" +
+                    "      \"incorrect_answers\": [\n" +
+                    "        \"Broken Glass\",\n" +
+                    "        \"Balls\",\n" +
+                    "        \"The Moon\"\n" +
+                    "      ]\n" +
+                    "    },\n" +
+                    "    {\n" +
+                    "      \"category\": \"General Knowledge\",\n" +
+                    "      \"type\": \"multiple\",\n" +
+                    "      \"difficulty\": \"easy\",\n" +
+                    "      \"question\": \"What is the largest organ of the human body?\",\n" +
+                    "      \"correct_answer\": \"Skin\",\n" +
+                    "      \"incorrect_answers\": [\n" +
+                    "        \"Heart\",\n" +
+                    "        \"large Intestine\",\n" +
+                    "        \"Liver\"\n" +
+                    "      ]\n" +
+                    "    },\n" +
+                    "    {\n" +
+                    "      \"category\": \"General Knowledge\",\n" +
+                    "      \"type\": \"multiple\",\n" +
+                    "      \"difficulty\": \"easy\",\n" +
+                    "      \"question\": \"Which sign of the zodiac is represented by the Crab?\",\n" +
+                    "      \"correct_answer\": \"Cancer\",\n" +
+                    "      \"incorrect_answers\": [\n" +
+                    "        \"Libra\",\n" +
+                    "        \"Virgo\",\n" +
+                    "        \"Sagittarius\"\n" +
+                    "      ]\n" +
+                    "    },\n" +
+                    "    {\n" +
+                    "      \"category\": \"General Knowledge\",\n" +
+                    "      \"type\": \"multiple\",\n" +
+                    "      \"difficulty\": \"easy\",\n" +
+                    "      \"question\": \"On a dartboard, what number is directly opposite No. 1?\",\n" +
+                    "      \"correct_answer\": \"19\",\n" +
+                    "      \"incorrect_answers\": [\n" +
+                    "        \"20\",\n" +
+                    "        \"12\",\n" +
+                    "        \"15\"\n" +
+                    "      ]\n" +
+                    "    },\n" +
+                    "    {\n" +
+                    "      \"category\": \"General Knowledge\",\n" +
+                    "      \"type\": \"multiple\",\n" +
+                    "      \"difficulty\": \"easy\",\n" +
+                    "      \"question\": \"What type of animal was Harambe, who was shot after a child fell into it's enclosure at the Cincinnati Zoo?\",\n" +
+                    "      \"correct_answer\": \"Gorilla\",\n" +
+                    "      \"incorrect_answers\": [\n" +
+                    "        \"Tiger\",\n" +
+                    "        \"Panda\",\n" +
+                    "        \"Crocodile\"\n" +
+                    "      ]\n" +
+                    "    },\n" +
+                    "    {\n" +
+                    "      \"category\": \"General Knowledge\",\n" +
+                    "      \"type\": \"multiple\",\n" +
+                    "      \"difficulty\": \"easy\",\n" +
+                    "      \"question\": \"What is the nickname of the US state of California?\",\n" +
+                    "      \"correct_answer\": \"Golden State\",\n" +
+                    "      \"incorrect_answers\": [\n" +
+                    "        \"Sunshine State\",\n" +
+                    "        \"Bay State\",\n" +
+                    "        \"Treasure State\"\n" +
+                    "      ]\n" +
+                    "    },\n" +
+                    "    {\n" +
+                    "      \"category\": \"General Knowledge\",\n" +
+                    "      \"type\": \"multiple\",\n" +
+                    "      \"difficulty\": \"easy\",\n" +
+                    "      \"question\": \"Which American-owned brewery led the country in sales by volume in 2015?\",\n" +
+                    "      \"correct_answer\": \"D. G. Yuengling and Son, Inc\",\n" +
+                    "      \"incorrect_answers\": [\n" +
+                    "        \"Anheuser Busch\",\n" +
+                    "        \"Boston Beer Company\",\n" +
+                    "        \"Miller Coors\"\n" +
+                    "      ]\n" +
+                    "    },\n" +
+                    "    {\n" +
+                    "      \"category\": \"General Knowledge\",\n" +
+                    "      \"type\": \"multiple\",\n" +
+                    "      \"difficulty\": \"easy\",\n" +
+                    "      \"question\": \"According to Sherlock Holmes, 'If you eliminate the impossible, whatever remains, however improbable, must be the...'\",\n" +
+                    "      \"correct_answer\": \"Truth\",\n" +
+                    "      \"incorrect_answers\": [\n" +
+                    "        \"Answer\",\n" +
+                    "        \"Cause\",\n" +
+                    "        \"Source\"\n" +
+                    "      ]\n" +
+                    "    },\n" +
+                    "    {\n" +
+                    "      \"category\": \"General Knowledge\",\n" +
+                    "      \"type\": \"multiple\",\n" +
+                    "      \"difficulty\": \"easy\",\n" +
+                    "      \"question\": \"What is the name of Poland in Polish?\",\n" +
+                    "      \"correct_answer\": \"Polska\",\n" +
+                    "      \"incorrect_answers\": [\n" +
+                    "        \"Pupcia\",\n" +
+                    "        \"Polszka\",\n" +
+                    "        \"Polski\"\n" +
+                    "      ]\n" +
+                    "    },\n" +
+                    "    {\n" +
+                    "      \"category\": \"General Knowledge\",\n" +
+                    "      \"type\": \"multiple\",\n" +
+                    "      \"difficulty\": \"easy\",\n" +
+                    "      \"question\": \"The New York Times slogan is, 'All the News That's Fit to...'\",\n" +
+                    "      \"correct_answer\": \"Print\",\n" +
+                    "      \"incorrect_answers\": [\n" +
+                    "        \"Digest\",\n" +
+                    "        \"Look\",\n" +
+                    "        \"Read\"\n" +
+                    "      ]\n" +
+                    "    },\n" +
+                    "    {\n" +
+                    "      \"category\": \"General Knowledge\",\n" +
+                    "      \"type\": \"multiple\",\n" +
+                    "      \"difficulty\": \"easy\",\n" +
+                    "      \"question\": \"What do the letters of the fast food chain KFC stand for?\",\n" +
+                    "      \"correct_answer\": \"Kentucky Fried Chicken\",\n" +
+                    "      \"incorrect_answers\": [\n" +
+                    "        \"Kentucky Fresh Cheese\",\n" +
+                    "        \"Kibbled Freaky Cow\",\n" +
+                    "        \"Kiwi Food Cut\"\n" +
+                    "      ]\n" +
+                    "    },\n" +
+                    "    {\n" +
+                    "      \"category\": \"General Knowledge\",\n" +
+                    "      \"type\": \"multiple\",\n" +
+                    "      \"difficulty\": \"easy\",\n" +
+                    "      \"question\": \"Which sign of the zodiac comes between Virgo and Scorpio?\",\n" +
+                    "      \"correct_answer\": \"Libra\",\n" +
+                    "      \"incorrect_answers\": [\n" +
+                    "        \"Gemini\",\n" +
+                    "        \"Taurus\",\n" +
+                    "        \"Capricorn\"\n" +
+                    "      ]\n" +
+                    "    },\n" +
+                    "    {\n" +
+                    "      \"category\": \"General Knowledge\",\n" +
+                    "      \"type\": \"multiple\",\n" +
+                    "      \"difficulty\": \"easy\",\n" +
+                    "      \"question\": \"What is Tasmania?\",\n" +
+                    "      \"correct_answer\": \"An Australian State\",\n" +
+                    "      \"incorrect_answers\": [\n" +
+                    "        \"A flavor of Ben and Jerry's ice-cream\",\n" +
+                    "        \"A Psychological Disorder\",\n" +
+                    "        \"The Name of a Warner Brothers Cartoon Character\"\n" +
+                    "      ]\n" +
+                    "    },\n" +
+                    "    {\n" +
+                    "      \"category\": \"General Knowledge\",\n" +
+                    "      \"type\": \"multiple\",\n" +
+                    "      \"difficulty\": \"easy\",\n" +
+                    "      \"question\": \"In which fast food chain can you order a Big Mac?\",\n" +
+                    "      \"correct_answer\": \"McDonald's\",\n" +
+                    "      \"incorrect_answers\": [\n" +
+                    "        \"KFC\",\n" +
+                    "        \"Subway\",\n" +
+                    "        \"Hungry Jack's\"\n" +
+                    "      ]\n" +
+                    "    },\n" +
+                    "    {\n" +
+                    "      \"category\": \"General Knowledge\",\n" +
+                    "      \"type\": \"multiple\",\n" +
+                    "      \"difficulty\": \"easy\",\n" +
+                    "      \"question\": \"Which of the following is the IATA code for Manchester Airport?\",\n" +
+                    "      \"correct_answer\": \"MAN\",\n" +
+                    "      \"incorrect_answers\": [\n" +
+                    "        \"EGLL\",\n" +
+                    "        \"LHR\",\n" +
+                    "        \"EGCC\"\n" +
+                    "      ]\n" +
+                    "    },\n" +
+                    "    {\n" +
+                    "      \"category\": \"General Knowledge\",\n" +
+                    "      \"type\": \"multiple\",\n" +
+                    "      \"difficulty\": \"easy\",\n" +
+                    "      \"question\": \"What is the Zodiac symbol for Gemini?\",\n" +
+                    "      \"correct_answer\": \"Twins\",\n" +
+                    "      \"incorrect_answers\": [\n" +
+                    "        \"Fish\",\n" +
+                    "        \"Scales\",\n" +
+                    "        \"Maiden\"\n" +
+                    "      ]\n" +
+                    "    },\n" +
+                    "    {\n" +
+                    "      \"category\": \"General Knowledge\",\n" +
+                    "      \"type\": \"multiple\",\n" +
+                    "      \"difficulty\": \"easy\",\n" +
+                    "      \"question\": \"The likeness of which president is featured on the rare $2 bill of USA currency?\",\n" +
+                    "      \"correct_answer\": \"Thomas Jefferson\",\n" +
+                    "      \"incorrect_answers\": [\n" +
+                    "        \"Martin Van Buren\",\n" +
+                    "        \"Ulysses Grant\",\n" +
+                    "        \"John Quincy Adams\"\n" +
+                    "      ]\n" +
+                    "    },\n" +
+                    "    {\n" +
+                    "      \"category\": \"General Knowledge\",\n" +
+                    "      \"type\": \"multiple\",\n" +
+                    "      \"difficulty\": \"easy\",\n" +
+                    "      \"question\": \"What is Cynophobia the fear of?\",\n" +
+                    "      \"correct_answer\": \"Dogs\",\n" +
+                    "      \"incorrect_answers\": [\n" +
+                    "        \"Birds\",\n" +
+                    "        \"Flying\",\n" +
+                    "        \"Germs\"\n" +
+                    "      ]\n" +
+                    "    },\n" +
+                    "    {\n" +
+                    "      \"category\": \"General Knowledge\",\n" +
+                    "      \"type\": \"multiple\",\n" +
+                    "      \"difficulty\": \"easy\",\n" +
+                    "      \"question\": \"Terry Gilliam was an animator that worked with which British comedy group?\",\n" +
+                    "      \"correct_answer\": \"Monty Python\",\n" +
+                    "      \"incorrect_answers\": [\n" +
+                    "        \"The Goodies\",\n" +
+                    "        \"The League of Gentlemen&lrm;\",\n" +
+                    "        \"The Penny Dreadfuls\"\n" +
+                    "      ]\n" +
+                    "    },\n" +
+                    "    {\n" +
+                    "      \"category\": \"General Knowledge\",\n" +
+                    "      \"type\": \"multiple\",\n" +
+                    "      \"difficulty\": \"easy\",\n" +
+                    "      \"question\": \"When someone is inexperienced they are said to be what color?\",\n" +
+                    "      \"correct_answer\": \"Green\",\n" +
+                    "      \"incorrect_answers\": [\n" +
+                    "        \"Red\",\n" +
+                    "        \"Blue\",\n" +
+                    "        \"Yellow\"\n" +
+                    "      ]\n" +
+                    "    },\n" +
+                    "    {\n" +
+                    "      \"category\": \"General Knowledge\",\n" +
+                    "      \"type\": \"multiple\",\n" +
+                    "      \"difficulty\": \"easy\",\n" +
+                    "      \"question\": \"How many furlongs are there in a mile?\",\n" +
+                    "      \"correct_answer\": \"Eight\",\n" +
+                    "      \"incorrect_answers\": [\n" +
+                    "        \"Two\",\n" +
+                    "        \"Four\",\n" +
+                    "        \"Six\"\n" +
+                    "      ]\n" +
+                    "    },\n" +
+                    "    {\n" +
+                    "      \"category\": \"General Knowledge\",\n" +
+                    "      \"type\": \"multiple\",\n" +
+                    "      \"difficulty\": \"easy\",\n" +
+                    "      \"question\": \"When someone is cowardly, they are said to have what color belly?\",\n" +
+                    "      \"correct_answer\": \"Yellow\",\n" +
+                    "      \"incorrect_answers\": [\n" +
+                    "        \"Green\",\n" +
+                    "        \"Red\",\n" +
+                    "        \"Blue\"\n" +
+                    "      ]\n" +
+                    "    },\n" +
+                    "    {\n" +
+                    "      \"category\": \"General Knowledge\",\n" +
+                    "      \"type\": \"multiple\",\n" +
+                    "      \"difficulty\": \"easy\",\n" +
+                    "      \"question\": \"What is the name of NASA's most famous space telescope?\",\n" +
+                    "      \"correct_answer\": \"Hubble Space Telescope\",\n" +
+                    "      \"incorrect_answers\": [\n" +
+                    "        \"Big Eye\",\n" +
+                    "        \"Death Star\",\n" +
+                    "        \"Millenium Falcon\"\n" +
+                    "      ]\n" +
+                    "    },\n" +
+                    "    {\n" +
+                    "      \"category\": \"General Knowledge\",\n" +
+                    "      \"type\": \"multiple\",\n" +
+                    "      \"difficulty\": \"easy\",\n" +
+                    "      \"question\": \"Earth is located in which galaxy?\",\n" +
+                    "      \"correct_answer\": \"The Milky Way Galaxy\",\n" +
+                    "      \"incorrect_answers\": [\n" +
+                    "        \"The Mars Galaxy\",\n" +
+                    "        \"The Galaxy Note\",\n" +
+                    "        \"The Black Hole\"\n" +
+                    "      ]\n" +
+                    "    },\n" +
+                    "    {\n" +
+                    "      \"category\": \"General Knowledge\",\n" +
+                    "      \"type\": \"multiple\",\n" +
+                    "      \"difficulty\": \"easy\",\n" +
+                    "      \"question\": \"The Canadian $1 coin is colloquially known as a what?\",\n" +
+                    "      \"correct_answer\": \"Loonie\",\n" +
+                    "      \"incorrect_answers\": [\n" +
+                    "        \"Boolie\",\n" +
+                    "        \"Foolie\",\n" +
+                    "        \"Moodie\"\n" +
+                    "      ]\n" +
+                    "    },\n" +
+                    "    {\n" +
+                    "      \"category\": \"General Knowledge\",\n" +
+                    "      \"type\": \"multiple\",\n" +
+                    "      \"difficulty\": \"easy\",\n" +
+                    "      \"question\": \"Who is the author of Jurrasic Park?\",\n" +
+                    "      \"correct_answer\": \"Michael Crichton\",\n" +
+                    "      \"incorrect_answers\": [\n" +
+                    "        \"Peter Benchley\",\n" +
+                    "        \"Chuck Paluhniuk\",\n" +
+                    "        \"Irvine Welsh\"\n" +
+                    "      ]\n" +
+                    "    },\n" +
+                    "    {\n" +
+                    "      \"category\": \"General Knowledge\",\n" +
+                    "      \"type\": \"multiple\",\n" +
+                    "      \"difficulty\": \"easy\",\n" +
+                    "      \"question\": \"Which of the following is not the host of a program on NPR?\",\n" +
+                    "      \"correct_answer\": \"Ben Shapiro\",\n" +
+                    "      \"incorrect_answers\": [\n" +
+                    "        \"Terry Gross\",\n" +
+                    "        \"Ira Glass\",\n" +
+                    "        \"Peter Sagal\"\n" +
+                    "      ]\n" +
+                    "    },\n" +
+                    "    {\n" +
+                    "      \"category\": \"General Knowledge\",\n" +
+                    "      \"type\": \"multiple\",\n" +
+                    "      \"difficulty\": \"easy\",\n" +
+                    "      \"question\": \"What is the French word for 'fish'?\",\n" +
+                    "      \"correct_answer\": \"poisson\",\n" +
+                    "      \"incorrect_answers\": [\n" +
+                    "        \"fiche\",\n" +
+                    "        \"escargot\",\n" +
+                    "        \"mer\"\n" +
+                    "      ]\n" +
+                    "    },\n" +
+                    "    {\n" +
+                    "      \"category\": \"General Knowledge\",\n" +
+                    "      \"type\": \"multiple\",\n" +
+                    "      \"difficulty\": \"easy\",\n" +
+                    "      \"question\": \"When was the Playstation 3 released?\",\n" +
+                    "      \"correct_answer\": \"November 11, 2006\",\n" +
+                    "      \"incorrect_answers\": [\n" +
+                    "        \"January 8, 2007\",\n" +
+                    "        \"December 25, 2007\",\n" +
+                    "        \"July 16, 2006\"\n" +
+                    "      ]\n" +
+                    "    },\n" +
+                    "    {\n" +
+                    "      \"category\": \"General Knowledge\",\n" +
+                    "      \"type\": \"multiple\",\n" +
+                    "      \"difficulty\": \"easy\",\n" +
+                    "      \"question\": \"What kind of aircraft was developed by Igor Sikorsky in the United States in 1942?\",\n" +
+                    "      \"correct_answer\": \"Helicopter\",\n" +
+                    "      \"incorrect_answers\": [\n" +
+                    "        \"Stealth Blimp\",\n" +
+                    "        \"Jet\",\n" +
+                    "        \"Space Capsule\"\n" +
+                    "      ]\n" +
+                    "    }\n" +
+                    "  ]";
     private String Questions_medium="[\n" +
             "  {\n" +
             "    \"category\": \"General Knowledge\",\n" +
@@ -1098,8 +1105,8 @@ public class Json {
             "      \"8\",\n" +
             "      \"12\"\n" +
             "    ]\n" +
-            "  }\n" +
-            "]";
+            "  }\n"+
+            "]";;
     public static String[] diff = new String[11];
     public static String[] question = new String[11];
     public static String[][] Answers = new String[11][4];
@@ -1191,5 +1198,42 @@ public class Json {
             }
         }
     }
+    public static String readAssetsTxt(Context context, String fileName){
+        try {
+            //Return an AssetManager instance for your application's package
+            InputStream is = context.getAssets().open(fileName+".txt");
+            int size = is.available();
+            // Read the entire asset into a local byte buffer.
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            // Convert the buffer into a string.
+            String text = new String(buffer, "gbk");
+            // Finally stick the string into the text view.
+            return text;
+        } catch (IOException e) {
+            // Should never happen!
+//            throw new RuntimeException(e);
+            e.printStackTrace();
+        }
+        return "读取错误，请检查文件名";
+    }
+    public static <T> List<T> castList(Object obj, Class<T> clazz)
+    {
+        List<T> result = new ArrayList<T>();
+        if(obj instanceof List<?>)
+        {
+            for (Object o : (List<?>) obj)
+            {
+                result.add(clazz.cast(o));
+            }
+            return result;
+        }
+        return null;
+    }
+
+
+
+
 }
 

@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         button.setOnClickListener(this);
         button1.setOnClickListener(this);
         button1.setVisibility(View.GONE);
-        json = new Json();
+        json = new Json(getApplicationContext());
         countDownTimer = new CountDownTimer(16000,1000) {
             @Override
             public void onTick(long l) {

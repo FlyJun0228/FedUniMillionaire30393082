@@ -46,18 +46,6 @@ public class MyAdapter extends BaseAdapter {
       dao.DeleteHis(i);
       notifyDataSetChanged();
     }
-    /* public void select(int position) {
-        if (!mList.get(position).isSelected()) {
-            mList.get(position).setSelected(true);
-            for (int i = 0; i < mList.size(); i++) {
-                if (i != position) {
-                    mList.get(i).setSelected(false);
-                }
-            }
-        }
-        notifyDataSetChanged();
-    }*/
-
     public View getView(int j, View view, ViewGroup viewGroup) {
         int i = j;
         ViewHolder viewHolder;
